@@ -1,11 +1,12 @@
 import React from 'react';
-import { Layout } from '../components/Layout/Layout';
-import { ColorSchemeToggle } from '../components/ColorSchemeToggle/ColorSchemeToggle';
+import { HeroText } from '../components/Layout/Hero';
+// import { ColorSchemeToggle } from '../components/ColorSchemeToggle/ColorSchemeToggle';
+import Layout from '../components/Layout/Layout';
 
 export default function HomePage() {
   return (
     <Layout>
-      <ColorSchemeToggle />
+      <HeroText />
     </Layout>
   );
 }
