@@ -6,6 +6,7 @@ import {
   Container,
   Group,
   Header,
+  MediaQuery,
   Menu,
   Stack,
   Title,
@@ -15,7 +16,6 @@ import { useDisclosure } from '@mantine/hooks';
 import { IconChevronDown } from '@tabler/icons-react';
 import { Link } from 'gatsby';
 import React from 'react';
-import MantineLogo from '../../assets/Logo';
 
 const HEADER_HEIGHT = 60;
 
@@ -27,11 +27,8 @@ const useStyles = createStyles((theme) => ({
     alignItems: 'center',
     margin: '20px',
     marginTop: 30,
-  },
-
-  logo: {
-    '& > svg path': {
-      fill: theme.colors[theme.primaryColor],
+    [theme.fn.smallerThan('sm')]: {
+      justifyContent: 'center',
     },
   },
 
@@ -42,6 +39,9 @@ const useStyles = createStyles((theme) => ({
       fontFamily: 'monospace',
       fontSize: theme.fontSizes.lg,
       color: theme.colors.gray[5],
+    },
+    '& :hover': {
+      color: theme.colors.gray[4],
     },
   },
 
@@ -67,7 +67,7 @@ const useStyles = createStyles((theme) => ({
     fontSize: theme.fontSizes.sm,
     fontWeight: 500,
     '&:hover': {
-      fontWeight: '900',
+      fontWeight: 900,
     },
   },
 
@@ -122,23 +122,22 @@ export function HeaderAction({ links }: HeaderActionProps) {
   // create menus and submenus
   const items = getMenuItems(links, classes);
   return (
-    <Header height={HEADER_HEIGHT} sx={{ borderBottom: 0 }} mb={120}>
+    <Header height={150} sx={{ borderBottom: 0 }}>
       <Container className={classes.inner} fluid>
         <Group>
           <Burger opened={opened} onClick={toggleBurger} className={classes.burger} size="sm" />
         </Group>
-        <Stack spacing={5} className={classes.links}>
-          <Center className={classes.logo}>
-            {/* <MantineLogo size={28} /> */}
-            <Link to="/" className={classes.titleLink}>
-              <Title>pedro-pessoa|dev</Title>
-            </Link>
-          </Center>
-          <Group>{items}</Group>
+        <Stack spacing={5} sx={{ textAlign: 'center', margin: 'auto' }}>
+          <Link to="/" className={classes.titleLink}>
+            <Title>pedro-pessoa|dev</Title>
+          </Link>
+          <Group className={classes.links}>{items}</Group>
         </Stack>
-        <Button radius="xl" sx={{ height: 30 }}>
-          Download CV
-        </Button>
+        <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+          <Button radius="xl" sx={{ height: 30, position: 'absolute', right: 15 }} variant="light">
+            Download CV
+          </Button>
+        </MediaQuery>
       </Container>
     </Header>
   );
