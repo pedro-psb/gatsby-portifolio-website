@@ -88,7 +88,10 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export function HeroText() {
+const defaultText =
+  'Today, I work mainly with python/typescript. When I started, I decided to focus on python for backend development and later I dived in frontend and design systems too, focusing in the the React ecosystem';
+
+export function HeroText({ text = defaultText }: { text: string }) {
   const { classes } = useStyles();
 
   return (
@@ -104,9 +107,7 @@ export function HeroText() {
 
         <Container p={0} size={600}>
           <Text size="lg" color="dimmed" className={classes.description}>
-            I work mainly with python/typescript and my favorite stack is FastAPI + React. I began
-            with backend, but when I was introduced to React functional world I'd started to enjoy
-            the frontend too!
+            {text}
           </Text>
         </Container>
 

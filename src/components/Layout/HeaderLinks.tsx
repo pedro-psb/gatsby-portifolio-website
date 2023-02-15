@@ -1,14 +1,14 @@
 export const header_links = [
   {
-    link: '/#about',
-    label: 'About',
+    link: '/#project-section',
+    label: 'Projects',
   },
   {
-    link: '/#projects',
-    label: 'Projects',
+    link: '/#about-section',
+    label: 'About',
   },
   {
     link: '/blog',
     label: 'Blog',
-  }
-]
+  },
+];

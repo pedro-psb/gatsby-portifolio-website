@@ -1,5 +1,6 @@
 import { ActionIcon, Anchor, Center, Group, createStyles } from '@mantine/core';
 import { IconBrandInstagram, IconBrandTwitter, IconBrandYoutube } from '@tabler/icons-react';
+import React from 'react';
 
 const useStyles = createStyles((theme) => ({
   footer: {
@@ -52,14 +53,7 @@ interface FooterCenteredProps {
 export function FooterCentered({ links, fixed }: FooterCenteredProps) {
   const { classes } = useStyles();
   const items = links.map((link) => (
-    <Anchor<'a'>
-      color="dimmed"
-      key={link.label}
-      href={link.link}
-      sx={{ lineHeight: 1 }}
-      onClick={(event) => event.preventDefault()}
-      size="sm"
-    >
+    <Anchor color="dimmed" key={link.label} href={link.link} sx={{ lineHeight: 1 }} size="sm">
       {link.label}
     </Anchor>
   ));

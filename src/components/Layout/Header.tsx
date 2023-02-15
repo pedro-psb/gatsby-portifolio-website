@@ -123,7 +123,7 @@ export function HeaderAction({ links }: HeaderActionProps) {
   const items = getMenuItems(links, classes);
   return (
     <Header height={150} sx={{ borderBottom: 0 }}>
-      <Container className={classes.inner} fluid>
+      <Container className={classes.inner} fluid id="index-section">
         <Group>
           <Burger opened={opened} onClick={toggleBurger} className={classes.burger} size="sm" />
         </Group>
