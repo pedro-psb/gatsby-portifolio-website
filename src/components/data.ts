@@ -11,11 +11,36 @@ export const sectionText = {
 const placeholder =
   'It can’t help but hear a pin drop from over half a mile away, so it lives deep in the mountains where there aren’t many people or Pokémon.';
 export const aboutMeList = [
-  { id: 1, question: 'How did you started programming?', answer: placeholder },
-  { id: 2, question: 'What is your favorite stack?', answer: placeholder },
-  { id: 3, question: 'Which tech areas interest you the most, currently?', answer: placeholder },
-  { id: 4, question: 'Have any hobbies?', answer: placeholder },
-  { id: 5, question: 'Space or tabs?', answer: placeholder },
+  {
+    id: 1,
+    question: 'How did you started programming?',
+    answer:
+      "When I was a teenager I liked playing games in Kongregate (a web gaming platform) and eventually I started programming my own simple games in ActionScript. It was just for fun and I've dropped programming for some years before I decided to become a developer. In the mean time I've played a little with python scripts and even learned some Scheme/lisp (because of Lilypond), but just for hobby.",
+  },
+  {
+    id: 2,
+    question: 'What is your favorite stack?',
+    answer:
+      "Currently (2023), my favorite webdev stack is FastAPI for the backend and GatsbyJS + MantineUI (component library) for the frontend. Some people say I should go for JS backend too, and I might go if needed, but I'm sticking to python to explore the mature data science and machine learning ecosystem",
+  },
+  {
+    id: 3,
+    question: 'Which tech areas interest you the most, currently?',
+    answer:
+      "I'm interested in machine learning, in special. Now that I've enrolled in a Computer Science course, I feel more confident in giving it a try, as I'm having more solid foundations of linear algebra, statistics and such",
+  },
+  {
+    id: 4,
+    question: 'Have any hobbies?',
+    answer:
+      'I used to be a musician, so yeah, music is a hobby now. I used to play mainly percussion and drums, but today I prefer playing guitar and keyboard.',
+  },
+  {
+    id: 5,
+    question: 'Space or tabs?',
+    answer:
+      'Depends. I already had some trouble using spaces with bash, but for python spaces are the standard, according to some PEP document',
+  },
 ];
 
 // Project list
