@@ -1,10 +1,15 @@
-import { ActionIcon, Anchor, Center, Group, createStyles } from '@mantine/core';
-import { IconBrandInstagram, IconBrandTwitter, IconBrandYoutube } from '@tabler/icons-react';
+import { ActionIcon, Anchor, Center, Container, Group, Text, createStyles } from '@mantine/core';
+import { IconBrandGithub, IconBrandLinkedin, IconBrandTwitter } from '@tabler/icons-react';
 import React from 'react';
 
 const useStyles = createStyles((theme) => ({
   footer: {
     marginTop: 'auto',
+    margin: 'auto',
+    width: '100%',
+    [theme.fn.largerThan('md')]: {
+      width: theme.breakpoints.md,
+    },
     borderTop: `1px solid ${
       theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[2]
     }`,
@@ -15,9 +20,17 @@ const useStyles = createStyles((theme) => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: `${theme.spacing.xl}px ${theme.spacing.xl}px`,
-
     [theme.fn.smallerThan('sm')]: {
       flexDirection: 'column',
+      '& :nth-child(1)': {
+        order: 3,
+      },
+      '& :nth-child(2)': {
+        order: 1,
+      },
+      '& :nth-child(3)': {
+        order: 2,
+      },
     },
   },
 
@@ -29,50 +42,60 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-function SocialLinks() {
+function SocialLinks({ socialLinks }: { socialLinks: socialLink[] }) {
+  const iconStyle = {
+    size: 20,
+    stroke: 1.5,
+  };
+  const iconMap = {
+    twitter: <IconBrandTwitter size={iconStyle.size} stroke={iconStyle.stroke} />,
+    linkedin: <IconBrandLinkedin size={iconStyle.size} stroke={iconStyle.stroke} />,
+    github: <IconBrandGithub size={iconStyle.size} stroke={iconStyle.stroke} />,
+  };
   return (
     <Group spacing="xs" position="right" noWrap>
-      <ActionIcon size="lg" variant="default" radius="xl">
-        <IconBrandTwitter size={18} stroke={1.5} />
-      </ActionIcon>
-      <ActionIcon size="lg" variant="default" radius="xl">
-        <IconBrandYoutube size={18} stroke={1.5} />
-      </ActionIcon>
-      <ActionIcon size="lg" variant="default" radius="xl">
-        <IconBrandInstagram size={18} stroke={1.5} />
-      </ActionIcon>
+      {socialLinks.map((social) => (
+        <ActionIcon size="lg" variant="default" radius="xl" component="a" href={social.url}>
+          {iconMap[social.name.toLowerCase()]}
+        </ActionIcon>
+      ))}
     </Group>
   );
 }
 
+type socialLink = { name: string; url: string };
+
 interface FooterCenteredProps {
   links: { link: string; label: string }[];
-  fixed?: boolean;
+  socialLinks: socialLink[];
 }
 
-export function FooterCentered({ links, fixed }: FooterCenteredProps) {
+export function FooterCentered({ links, socialLinks }: FooterCenteredProps) {
   const { classes } = useStyles();
-  const items = links.map((link) => (
-    <Anchor color="dimmed" key={link.label} href={link.link} sx={{ lineHeight: 1 }} size="sm">
-      {link.label}
-    </Anchor>
-  ));
 
   return (
     <div className={classes.footer}>
-      {!fixed ? (
-        <div className={classes.inner}>
-          {/* <MantineLogo size={28} /> */}
-          <Group className={classes.links}>{items}</Group>
-          <SocialLinks />
-        </div>
-      ) : (
-        <Center>
-          <div className={classes.inner}>
-            <SocialLinks />
-          </div>
-        </Center>
-      )}
+      <div className={classes.inner}>
+        <Group my="md">
+          <Text color="dimmed" size="sm" style={{ fontStyle: 'italic' }}>
+            2023 &copy; Pedro Pessoa
+          </Text>
+        </Group>
+        <Group className={classes.links}>
+          {links.map((link) => (
+            <Anchor
+              color="dimmed"
+              key={link.label}
+              href={link.link}
+              sx={{ lineHeight: 1 }}
+              size="sm"
+            >
+              {link.label}
+            </Anchor>
+          ))}
+        </Group>
+        <SocialLinks socialLinks={socialLinks} />
+      </div>
     </div>
   );
 }

@@ -1,9 +1,9 @@
 {
-  "name": "mantine-gatsby-template",
+  "name": "mantine-gatsby-blog-template",
   "version": "1.0.0",
   "description": "Mantine + Gatsby.js + gatsby-theme-blog template",
   "main": "index.js",
-  "repository": "git@github.com:mantinedev/mantine-gatsby-template.git",
+  "repository": "git@github.com:pedro-psb/gatsby-portifolio-website.git",
   "author": "Pedro Pessoa <pedropsb95@gmail.com>",
   "license": "MIT",
   "scripts": {

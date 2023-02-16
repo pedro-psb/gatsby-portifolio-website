@@ -7,9 +7,10 @@ import { header_links } from './HeaderLinks';
 
 interface LayoutProps {
   children: React.ReactNode;
+  socialLinks: any[];
 }
 
-export default function Layout({ children }: LayoutProps) {
+export default function Layout({ children, socialLinks }: LayoutProps) {
   const [colorScheme, setColorScheme] = useState<ColorScheme>('light');
   const toggleColorScheme = (value?: ColorScheme) =>
     setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
@@ -33,7 +34,7 @@ export default function Layout({ children }: LayoutProps) {
         >
           <HeaderAction links={header_links} />
           {children}
-          <FooterCentered links={header_links} />
+          <FooterCentered links={header_links} socialLinks={socialLinks} />
         </div>
       </MantineProvider>
     </ColorSchemeProvider>

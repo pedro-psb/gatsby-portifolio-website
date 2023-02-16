@@ -10,9 +10,10 @@ import { aboutMeList, projectsList, sectionText } from '../components/data';
 
 export default function HomePage({ data }) {
   const posts = data.allBlogPost.nodes;
+  const siteMeta = data.site.siteMetadata;
 
   return (
-    <Layout>
+    <Layout socialLinks={siteMeta.social}>
       <HeroText description={sectionText.hero} />
       <Projects projects={projectsList} description={sectionText.projects} />
       <BlogSection posts={posts} description={sectionText.blogging} />
