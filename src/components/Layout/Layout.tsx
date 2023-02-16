@@ -32,7 +32,7 @@ export default function Layout({ children, socialLinks }: LayoutProps) {
             flexDirection: 'column',
           }}
         >
-          <HeaderAction links={header_links} />
+          <HeaderAction links={header_links} socialLinks={socialLinks} />
           {children}
           <FooterCentered links={header_links} socialLinks={socialLinks} />
         </div>

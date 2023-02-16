@@ -1,4 +1,4 @@
-import { ActionIcon, Anchor, Center, Container, Group, Text, createStyles } from '@mantine/core';
+import { ActionIcon, Anchor, Group, Text, createStyles } from '@mantine/core';
 import { IconBrandGithub, IconBrandLinkedin, IconBrandTwitter } from '@tabler/icons-react';
 import React from 'react';
 
@@ -55,7 +55,15 @@ function SocialLinks({ socialLinks }: { socialLinks: socialLink[] }) {
   return (
     <Group spacing="xs" position="right" noWrap>
       {socialLinks.map((social) => (
-        <ActionIcon size="lg" variant="default" radius="xl" component="a" href={social.url}>
+        <ActionIcon
+          size="lg"
+          variant="default"
+          radius="xl"
+          component="a"
+          href={social.url}
+          target="_blank"
+          rel="noreferrer"
+        >
           {iconMap[social.name.toLowerCase()]}
         </ActionIcon>
       ))}

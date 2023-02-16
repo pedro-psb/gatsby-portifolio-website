@@ -1,4 +1,5 @@
 import {
+  ActionIcon,
   Burger,
   Button,
   Center,
@@ -12,7 +13,12 @@ import {
   createStyles,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { IconChevronDown } from '@tabler/icons-react';
+import {
+  IconBrandGithub,
+  IconBrandLinkedin,
+  IconBrandTwitter,
+  IconChevronDown,
+} from '@tabler/icons-react';
 import { Link } from 'gatsby';
 import React from 'react';
 
@@ -105,11 +111,50 @@ function getMenuItems(links, classes) {
   return menu;
 }
 
-interface HeaderActionProps {
-  links: { link: string; label: string; links: { link: string; label: string }[] }[];
+type socialLink = { name: string; url: string };
+
+function SocialLinks({ socialLinks }: { socialLinks: socialLink[] }) {
+  const iconStyle = {
+    size: 20,
+    stroke: 1.5,
+  };
+  const iconMap = {
+    twitter: <IconBrandTwitter size={iconStyle.size} stroke={iconStyle.stroke} />,
+    linkedin: <IconBrandLinkedin size={iconStyle.size} stroke={iconStyle.stroke} />,
+    github: <IconBrandGithub size={iconStyle.size} stroke={iconStyle.stroke} />,
+  };
+  return (
+    <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+      <Group
+        spacing="xs"
+        position="right"
+        style={{ position: 'absolute', top: 30, right: 30 }}
+        noWrap
+      >
+        {socialLinks.map((social) => (
+          <ActionIcon
+            size="lg"
+            variant="default"
+            radius="xl"
+            component="a"
+            href={social.url}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {iconMap[social.name.toLowerCase()]}
+          </ActionIcon>
+        ))}
+      </Group>
+    </MediaQuery>
+  );
 }
 
-export function HeaderAction({ links }: HeaderActionProps) {
+interface HeaderActionProps {
+  links: { link: string; label: string; links: { link: string; label: string }[] }[];
+  socialLinks: socialLink[];
+}
+
+export function HeaderAction({ links, socialLinks }: HeaderActionProps) {
   const { classes } = useStyles();
   const [opened, { toggle }] = useDisclosure(false);
   function toggleBurger() {
@@ -131,11 +176,12 @@ export function HeaderAction({ links }: HeaderActionProps) {
           </Link>
           <Group className={classes.links}>{items}</Group>
         </Stack>
-        <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+        {/* <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
           <Button radius="xl" sx={{ height: 30, position: 'absolute', right: 15 }} variant="light">
             Download CV
           </Button>
-        </MediaQuery>
+        </MediaQuery> */}
+        <SocialLinks socialLinks={socialLinks} />
       </Container>
     </Header>
   );

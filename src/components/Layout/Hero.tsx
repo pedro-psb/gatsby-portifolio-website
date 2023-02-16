@@ -16,6 +16,10 @@ const useStyles = createStyles((theme) => ({
   inner: {
     position: 'relative',
     zIndex: 1,
+    paddingRight: 15,
+    borderRightStyle: 'solid',
+    borderRightWidth: 2,
+    borderColor: theme.colors[theme.primaryColor][1],
   },
 
   dots: {
