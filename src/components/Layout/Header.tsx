@@ -8,8 +8,10 @@ import {
   Header,
   MediaQuery,
   Menu,
+  Paper,
   Stack,
   Title,
+  Transition,
   createStyles,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
@@ -23,6 +25,7 @@ import { Link } from 'gatsby';
 import React from 'react';
 
 const HEADER_HEIGHT = 60;
+const HEADER_HEIGHT_MOBILE = 150;
 
 const useStyles = createStyles((theme) => ({
   inner: {
@@ -77,6 +80,27 @@ const useStyles = createStyles((theme) => ({
 
   linkLabel: {
     marginRight: 5,
+  },
+  dropdown: {
+    position: 'absolute',
+    top: HEADER_HEIGHT_MOBILE,
+    left: 0,
+    right: 0,
+    zIndex: 0,
+    width: '100%',
+    borderTopRightRadius: 0,
+    borderTopLeftRadius: 0,
+    borderTopWidth: 0,
+    boxShadow: theme.shadows.md,
+    overflow: 'hidden',
+    '& a': {
+      marginBottom: 20,
+      textAlign: 'center',
+    },
+
+    [theme.fn.largerThan('sm')]: {
+      display: 'none',
+    },
   },
 }));
 
@@ -167,9 +191,19 @@ export function HeaderAction({ links, socialLinks }: HeaderActionProps) {
   return (
     <Header height={150} sx={{ borderBottom: 0 }}>
       <Container className={classes.inner} fluid id="index-section">
+        {/* Mobile menu */}
         <Group>
           <Burger opened={opened} onClick={toggleBurger} className={classes.burger} size="sm" />
         </Group>
+        <Transition transition="pop-top-left" duration={200} mounted={opened}>
+          {(styles) => (
+            <Paper className={classes.dropdown} withBorder style={styles}>
+              {items}
+            </Paper>
+          )}
+        </Transition>
+
+        {/* desktop menu */}
         <Stack spacing={5} sx={{ textAlign: 'center', margin: 'auto' }}>
           <Link to="/" className={classes.titleLink}>
             <Title>pedro-pessoa|dev</Title>
