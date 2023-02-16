@@ -2,6 +2,7 @@ import {
   ActionIcon,
   Avatar,
   Badge,
+  Button,
   Card,
   Center,
   Grid,
@@ -10,7 +11,13 @@ import {
   Text,
   createStyles,
 } from '@mantine/core';
-import { IconBookmark, IconHeart, IconShare } from '@tabler/icons-react';
+import {
+  IconBookmark,
+  IconBrandGithub,
+  IconExternalLink,
+  IconHeart,
+  IconShare,
+} from '@tabler/icons-react';
 import React from 'react';
 
 const useStyles = createStyles((theme) => ({
@@ -22,6 +29,7 @@ const useStyles = createStyles((theme) => ({
     '&:hover': {
       boxShadow: theme.shadows.md,
     },
+    height: 310,
   },
 
   rating: {
@@ -38,20 +46,20 @@ const useStyles = createStyles((theme) => ({
   },
 
   action: {
-    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
-    ...theme.fn.hover({
-      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1],
-    }),
+    padding: 3,
   },
 
   footer: {
     marginTop: theme.spacing.md,
+    color: theme.colors.gray[7],
+    fontWeight: 'bold',
   },
 }));
 
 export interface ProjectCardProps {
   image: string;
-  link: string;
+  linkSource: string;
+  linkLive: string;
   title: string;
   description: string;
   rating: string;
@@ -64,7 +72,8 @@ export interface ProjectCardProps {
 export function ProjectCard({
   className,
   image,
-  link,
+  linkSource,
+  linkLive,
   title,
   description,
   author,
@@ -72,21 +81,18 @@ export function ProjectCard({
   ...others
 }: ProjectCardProps & Omit<React.ComponentPropsWithoutRef<'div'>, keyof ProjectCardProps>) {
   const { classes, cx, theme } = useStyles();
-  const linkProps = { href: link, target: '_blank', rel: 'noopener noreferrer' };
 
   return (
     <Card withBorder radius="md" className={cx(classes.card, className)} {...others}>
       <Card.Section>
-        <a {...linkProps}>
-          <Image src={image} height={140} />
-        </a>
+        <Image src={image} height={140} />
       </Card.Section>
 
       <Badge className={classes.rating} variant="gradient" gradient={{ from: 'yellow', to: 'red' }}>
         {rating}
       </Badge>
 
-      <Text className={classes.title} weight={500} component="a" {...linkProps}>
+      <Text className={classes.title} weight={500}>
         {title}
       </Text>
 
@@ -95,8 +101,23 @@ export function ProjectCard({
       </Text>
 
       <Group position="apart" className={classes.footer}>
-        <Group spacing={8} mr={0}>
-          <ActionIcon className={classes.action}>
+        <a href={linkSource} target="_blank" rel="noreferrer">
+          {/* TODO use component='a' in button */}
+          <Button size="xs" variant="light">
+            {'< source />'}
+          </Button>
+        </a>
+        <a href={linkLive} target="_blank" rel="noreferrer">
+          <Button
+            leftIcon={<IconExternalLink size={15} />}
+            size="xs"
+            variant="subtle"
+            disabled={!Boolean(linkLive)}
+          >
+            live
+          </Button>
+        </a>
+        {/* <ActionIcon className={classes.action}>
             <IconHeart size={16} color={theme.colors.red[6]} />
           </ActionIcon>
           <ActionIcon className={classes.action}>
@@ -104,8 +125,7 @@ export function ProjectCard({
           </ActionIcon>
           <ActionIcon className={classes.action}>
             <IconShare size={16} />
-          </ActionIcon>
-        </Group>
+          </ActionIcon> */}
       </Group>
     </Card>
   );
