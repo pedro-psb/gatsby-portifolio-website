@@ -1,10 +1,10 @@
 {
   "name": "mantine-gatsby-template",
   "version": "1.0.0",
-  "description": "Mantine + Gatsby.js template",
+  "description": "Mantine + Gatsby.js + gatsby-theme-blog template",
   "main": "index.js",
   "repository": "git@github.com:mantinedev/mantine-gatsby-template.git",
-  "author": "Vitaly Rtishchev <rtivital@gmail.com>",
+  "author": "Pedro Pessoa <pedropsb95@gmail.com>",
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",

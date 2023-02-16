@@ -1,5 +1,11 @@
 // Hero description
-export const heroDescription = 'I work mostly with python/typescript';
+export const sectionText = {
+  hero: 'I work mostly with python/typescript building REST APIs, integrations, UIs and small utilities',
+  projects: 'There are my personal projects and studies. Feedbacks are welcome',
+  blogging:
+    'I like writting sometimes to consolidate knowledge and to share tips and tricks that helped me somehow',
+  aboutMe: 'Some facts about me',
+};
 
 // About me FAQ
 const placeholder =

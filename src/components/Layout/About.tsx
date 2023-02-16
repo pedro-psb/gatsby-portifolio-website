@@ -41,13 +41,19 @@ export const defaultAbout = [
   { id: 5, question: 'Space or tabs?', answer: placeholder },
 ];
 
-export function AboutSection({ about = defaultAbout }) {
+const default_desc = 'Some info about me';
+interface AboutProps {
+  about: { id: number; question: string; answer: string }[];
+  description: string;
+}
+
+export function AboutSection({ about = defaultAbout, description = default_desc }: AboutProps) {
   const { classes } = useStyles();
   return (
     <Section size="lg" bgColor="gray.0" color="gray.0" mb={0} pb={100} id="about-section">
       <Text className={classes.supTitle}>About me</Text>
       <Text color="dimmed" className={classes.description}>
-        Some info about me
+        {description}
       </Text>
       <Grid id="faq-grid" gutter={50} mt={50}>
         <Col span={12} md={7}>

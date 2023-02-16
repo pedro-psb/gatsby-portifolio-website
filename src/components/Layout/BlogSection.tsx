@@ -9,6 +9,11 @@ import { IconArticle, IconExternalLink } from '@tabler/icons-react';
 const useStyles = createStyles((theme) => ({
   card: {
     backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
+    borderLeftStyle: 'solid',
+    borderLeftWidth: 10,
+    '&:hover': {
+      borderColor: theme.colors.orange[2],
+    },
   },
 
   title: {
@@ -38,23 +43,25 @@ interface ArticleCardVerticalProps {
 function ArticleCardVertical({ image, category, title, date, slug }: ArticleCardVerticalProps) {
   const { classes } = useStyles();
   return (
-    <Card withBorder radius="md" p={0} className={classes.card}>
-      <Group noWrap spacing={0}>
-        <div className={classes.body}>
-          <Text transform="uppercase" color="dimmed" weight={700} size="xs">
-            {category}
-          </Text>
-          <Text className={classes.title} mt="xs" mb="md">
-            {title}
-          </Text>
-        </div>
-        <div className={classes.date}>
-          <Text size="xs" color="dimmed">
-            {date}
-          </Text>
-        </div>
-      </Group>
-    </Card>
+    <Link to={slug} style={{ textDecoration: 'none' }}>
+      <Card withBorder radius="md" p={0} className={classes.card}>
+        <Group noWrap spacing={0}>
+          <div className={classes.body}>
+            <Text transform="uppercase" color="dimmed" weight={700} size="xs">
+              {category}
+            </Text>
+            <Text className={classes.title} mt="xs" mb="md">
+              {title}
+            </Text>
+          </div>
+          <div className={classes.date}>
+            <Text size="xs" color="dimmed">
+              {date}
+            </Text>
+          </div>
+        </Group>
+      </Card>
+    </Link>
   );
 }
 
@@ -73,11 +80,14 @@ const useSectionStyles = createStyles((theme) => ({
   },
 }));
 
-interface BlogSectionProps<T> {
-  posts: Array<T>;
+interface BlogSectionProps {
+  posts: { id: number; tags: string[]; slug: string; title: string; date: string }[];
+  description: string;
 }
 
-export function BlogSection({ posts }: BlogSectionProps) {
+const default_text =
+  'I like writting sometimes to consolidate knowledge and to share tips and tricks that helped me somehow';
+export function BlogSection({ posts, description = default_text }: BlogSectionProps) {
   const { classes } = useSectionStyles();
   return (
     <Section my="lg" mt={50}>
@@ -87,8 +97,7 @@ export function BlogSection({ posts }: BlogSectionProps) {
             <IconArticle color="gray" /> blogging
           </Title>
           <Text color="dimmed" className={classes.description}>
-            I like writting sometimes to consolidate knowledge and to share tips and tricks that
-            helped me somehow
+            {description}
           </Text>
           <Center mt="md">
             <Link to="/blog">
@@ -102,8 +111,8 @@ export function BlogSection({ posts }: BlogSectionProps) {
           <SimpleGrid breakpoints={[{ minWidth: 'sm', cols: 2 }]}>
             {posts.map((post) => (
               <ArticleCardVertical
-                category="Tech"
-                date="Feb 2023"
+                category={post.tags[0]}
+                date={post.date}
                 slug={post.slug}
                 title={post.title}
                 key={post.id}

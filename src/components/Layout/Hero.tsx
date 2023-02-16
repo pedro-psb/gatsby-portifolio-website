@@ -1,14 +1,14 @@
 import { Button, Container, Text, Title, createStyles } from '@mantine/core';
-import React from 'react';
+import React, { Fragment } from 'react';
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
     position: 'relative',
-    paddingTop: 60,
-    paddingBottom: 80,
+    paddingTop: 150,
+    paddingBottom: 150,
 
     '@media (max-width: 755px)': {
-      paddingTop: 80,
+      paddingTop: 10,
       paddingBottom: 60,
     },
   },
@@ -90,8 +90,7 @@ const useStyles = createStyles((theme) => ({
 
 const defaultText =
   'Today, I work mainly with python/typescript. When I started, I decided to focus on python for backend development and later I dived in frontend and design systems too, focusing in the the React ecosystem';
-
-export function HeroText({ text = defaultText }: { text: string }) {
+export function HeroText({ description = defaultText }: { description: string }) {
   const { classes } = useStyles();
 
   return (
@@ -105,9 +104,9 @@ export function HeroText({ text = defaultText }: { text: string }) {
           from Brazil
         </Title>
 
-        <Container p={0} size={600}>
+        <Container p={0} size={500}>
           <Text size="lg" color="dimmed" className={classes.description}>
-            {text}
+            {description}
           </Text>
         </Container>
 

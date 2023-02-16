@@ -19,7 +19,11 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
       {/* Add your theme here */}
-      <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
+      <MantineProvider
+        theme={{ colorScheme, primaryColor: 'violet' }}
+        withGlobalStyles
+        withNormalizeCSS
+      >
         <div
           style={{
             minHeight: '100vh',

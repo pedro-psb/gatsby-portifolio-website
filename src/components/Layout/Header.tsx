@@ -1,5 +1,4 @@
 import {
-  Box,
   Burger,
   Button,
   Center,
@@ -21,7 +20,6 @@ const HEADER_HEIGHT = 60;
 
 const useStyles = createStyles((theme) => ({
   inner: {
-    height: HEADER_HEIGHT,
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',

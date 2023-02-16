@@ -19,14 +19,21 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export function Projects({ projects = mockData }) {
+const default_text = 'These are my projects. Feel free to contact me!';
+
+interface ProjectsProps {
+  projects: any[];
+  description: string;
+}
+
+export function Projects({ projects = mockData, description = default_text }: ProjectsProps) {
   const { classes } = useStyles();
   return (
     <Section bgColor="gray.0" color="gray.0" id="project-section">
       <Text className={classes.supTitle}>Projects</Text>
       <Container size={660} p={0} mb={50}>
         <Text color="dimmed" className={classes.description}>
-          These are my projects. Feel free to contact me!
+          {description}
         </Text>
       </Container>
       <CardGrid cards={projects} />
