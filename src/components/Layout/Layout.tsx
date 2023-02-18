@@ -1,6 +1,8 @@
-import { Box, ColorScheme, ColorSchemeProvider, Container, MantineProvider } from '@mantine/core';
+import { ColorScheme, ColorSchemeProvider, MantineProvider } from '@mantine/core';
 import { useHotkeys } from '@mantine/hooks';
+import { graphql, useStaticQuery } from 'gatsby';
 import React, { useState } from 'react';
+import BgImage from './BgImage';
 import { FooterCentered } from './Footers';
 import { HeaderAction } from './Header';
 import { header_links } from './HeaderLinks';
@@ -17,9 +19,7 @@ export default function Layout({ children, socialLinks }: LayoutProps) {
 
   useHotkeys([['mod+J', () => toggleColorScheme()]]);
 
-  return (
-    <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
-      {/* Add your theme here */}
+  return ( <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
       <MantineProvider
         theme={{ colorScheme, primaryColor: 'violet' }}
         withGlobalStyles
@@ -32,6 +32,7 @@ export default function Layout({ children, socialLinks }: LayoutProps) {
             flexDirection: 'column',
           }}
         >
+      <BgImage />
           <HeaderAction links={header_links} socialLinks={socialLinks} />
           {children}
           <FooterCentered links={header_links} socialLinks={socialLinks} />

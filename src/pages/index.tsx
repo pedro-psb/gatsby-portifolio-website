@@ -1,4 +1,3 @@
-import { Container, Divider, Space, Title, createStyles } from '@mantine/core';
 import { graphql } from 'gatsby';
 import React from 'react';
 import { AboutSection } from '../components/Layout/About';

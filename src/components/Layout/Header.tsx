@@ -1,7 +1,6 @@
 import {
   ActionIcon,
   Burger,
-  Button,
   Center,
   Container,
   Group,
@@ -24,7 +23,7 @@ import {
 import { Link } from 'gatsby';
 import React from 'react';
 
-const HEADER_HEIGHT = 60;
+// const HEADER_HEIGHT = 60;
 const HEADER_HEIGHT_MOBILE = 150;
 
 const useStyles = createStyles((theme) => ({
@@ -104,7 +103,8 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-function getMenuItems(links, classes) {
+
+function getMenuItems(links: Links, classes: Record<string, string>) {
   const menu = links.map((link) => {
     const menuItems = link.links?.map((item) => (
       <Menu.Item key={item.link}>{item.label}</Menu.Item>
@@ -173,8 +173,10 @@ function SocialLinks({ socialLinks }: { socialLinks: socialLink[] }) {
   );
 }
 
+type Links = { link: string; label: string; links?: { link: string; label: string }[] }[];
+
 interface HeaderActionProps {
-  links: { link: string; label: string; links: { link: string; label: string }[] }[];
+  links: Links
   socialLinks: socialLink[];
 }
 
@@ -189,7 +191,7 @@ export function HeaderAction({ links, socialLinks }: HeaderActionProps) {
   // create menus and submenus
   const items = getMenuItems(links, classes);
   return (
-    <Header height={150} sx={{ borderBottom: 0 }}>
+    <Header height={150} sx={{ borderBottom: 0, backgroundColor: 'transparent' }}>
       <Container className={classes.inner} fluid id="index-section">
         {/* Mobile menu */}
         <Group>

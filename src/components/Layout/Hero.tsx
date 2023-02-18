@@ -1,5 +1,6 @@
-import { Button, Container, Text, Title, createStyles } from '@mantine/core';
-import React, { Fragment } from 'react';
+import { Container, Text, Title, createStyles } from '@mantine/core';
+
+import React from 'react';
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -93,17 +94,18 @@ const useStyles = createStyles((theme) => ({
 }));
 
 const defaultText =
-  'Today, I work mainly with python/typescript. When I started, I decided to focus on python for backend development and later I dived in frontend and design systems too, focusing in the the React ecosystem';
+  'Today, I work mainly with fullstack python/typescript. When I started, I decided to focus on python for backend development and later I dived in frontend and design systems too, focusing in the the React ecosystem';
+
 export function HeroText({ description = defaultText }: { description: string }) {
   const { classes } = useStyles();
 
   return (
-    <Container className={classes.wrapper} size="auto">
+    <Container className={classes.wrapper} >
       <div className={classes.inner}>
         <Title className={classes.title}>
           Hello! I'm a{' '}
           <Text component="span" className={classes.highlight} inherit>
-            fullstack developer
+            software engineer
           </Text>{' '}
           from Brazil
         </Title>

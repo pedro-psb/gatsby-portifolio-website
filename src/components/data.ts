@@ -1,6 +1,6 @@
 // Hero description
 export const sectionText = {
-  hero: 'I work mostly with python/typescript building REST APIs, integrations, UIs and small utilities',
+  hero: 'I work mostly with fullstack python/typescript applications, building REST APIs, integrations, UIs and small utilities',
   projects: 'There are my personal projects and studies. Feedbacks are welcome',
   blogging:
     'I like writting sometimes to consolidate knowledge and to share tips and tricks that helped me somehow',
