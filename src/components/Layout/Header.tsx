@@ -176,7 +176,7 @@ function SocialLinks({ socialLinks }: { socialLinks: socialLink[] }) {
 type Links = { link: string; label: string; links?: { link: string; label: string }[] }[];
 
 interface HeaderActionProps {
-  links: Links
+  links: Links;
   socialLinks: socialLink[];
 }
 

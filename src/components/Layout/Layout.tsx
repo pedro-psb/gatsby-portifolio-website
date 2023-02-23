@@ -9,17 +9,32 @@ import { header_links } from './HeaderLinks';
 
 interface LayoutProps {
   children: React.ReactNode;
-  socialLinks: any[];
 }
 
-export default function Layout({ children, socialLinks }: LayoutProps) {
+export default function Layout({ children }: LayoutProps) {
   const [colorScheme, setColorScheme] = useState<ColorScheme>('light');
   const toggleColorScheme = (value?: ColorScheme) =>
     setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
 
-  useHotkeys([['mod+J', () => toggleColorScheme()]]);
+  // TODO add dark mode colorscheme
+  // useHotkeys([['mod+J', () => toggleColorScheme()]]);
+  const socialLinksQuery = useStaticQuery(graphql`
+    query SocialLinks {
+      site {
+        siteMetadata {
+          title
+          social {
+            name
+            url
+          }
+        }
+      }
+    }
+  `);
+  const socialLinks = socialLinksQuery.site.siteMetadata.social;
 
-  return ( <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
+  return (
+    <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
       <MantineProvider
         theme={{ colorScheme, primaryColor: 'violet' }}
         withGlobalStyles

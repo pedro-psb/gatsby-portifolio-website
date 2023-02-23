@@ -4,8 +4,7 @@ import React from 'react';
 
 const useStyles = createStyles((theme) => ({
   footer: {
-    marginTop: 'auto',
-    margin: 'auto',
+    margin: 'auto auto 0 auto',
     width: '100%',
     [theme.fn.largerThan('md')]: {
       width: theme.breakpoints.md,

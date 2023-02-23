@@ -12,7 +12,7 @@ export default function HomePage({ data }) {
   const siteMeta = data.site.siteMetadata;
 
   return (
-    <Layout socialLinks={siteMeta.social}>
+    <Layout>
       <HeroText description={sectionText.hero} />
       <Projects projects={projectsList} description={sectionText.projects} />
       <BlogSection posts={posts} description={sectionText.blogging} />
