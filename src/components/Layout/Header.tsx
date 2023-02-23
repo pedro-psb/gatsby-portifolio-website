@@ -80,6 +80,7 @@ const useStyles = createStyles((theme) => ({
   linkLabel: {
     marginRight: 5,
   },
+
   dropdown: {
     position: 'absolute',
     top: HEADER_HEIGHT_MOBILE,
@@ -102,7 +103,6 @@ const useStyles = createStyles((theme) => ({
     },
   },
 }));
-
 
 function getMenuItems(links: Links, classes: Record<string, string>) {
   const menu = links.map((link) => {
