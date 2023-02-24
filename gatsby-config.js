@@ -1,6 +1,7 @@
 path = require(`path`);
 
 module.exports = {
+  pathPrefix: '/gatsby-portifolio-website',
   siteMetadata: {
     // Used for the site title and SEO
     title: `Pedro Pessoa portifolio`,
@@ -10,7 +11,6 @@ module.exports = {
     description: `Pedro Pessoa portifolio`,
     // Used for resolving images in social cards
     siteUrl: `https://pedro-psb.github.io/gatsby-portifolio-website/`,
-    pathPrefix: '/gatsby-portifolio-website ',
     // Used for social links in the root footer
     social: [
       {
