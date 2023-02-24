@@ -13,6 +13,14 @@ In the gatsby ecosystem, I utilized `gatsby-blog-theme` to reuse common blog inf
 
 For the design, I didn't want to build it all from the ground, because my professional focus is not styling, design and CSS, so I decided on Mantine. It provided good solutions for theming and tweaking components and also had a good collection of UI elements. There were other popular solutions, like Chakra UI and Materials, but I liked some of the hooks and the samples in their UI library, so I decided to give it a shot.
 
+## Install
+
+Some dependencies were deprecated because of the use of `gatsby-blod-theme` starter. As a workaround using `legacy-peer-deps` works, but I may re-structure the code to make the blog infrastructure without the need for those broken dependencies.
+
+```bash
+npm install --legacy-peer-deps
+```
+
 ## npm scripts
 
 - `npm start` – start project locally
